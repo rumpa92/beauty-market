@@ -456,6 +456,27 @@ export default {
         this.showSuggestions = false;
       }
     });
+
+    // Ensure body scroll is disabled when modal is opened (helps center visually)
+    if (this.isVisible) document.body.classList.add('modal-open');
+  },
+
+  watch: {
+    isVisible(newVal) {
+      if (newVal) {
+        // disable background scrolling and ensure focus
+        document.body.classList.add('modal-open');
+        this.$nextTick(() => {
+          if (this.$refs.searchInput) this.$refs.searchInput.focus();
+        });
+      } else {
+        document.body.classList.remove('modal-open');
+      }
+    }
+  },
+
+  beforeDestroy() {
+    document.body.classList.remove('modal-open');
   }
 };
 </script>
