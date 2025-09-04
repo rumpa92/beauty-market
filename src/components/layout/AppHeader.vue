@@ -368,7 +368,11 @@ export default {
           type: 'success',
           message: 'You have been signed out successfully'
         });
-        this.$router.push('/');
+        // After logout, redirect to authentication demo page and open sign-in modal
+        this.authMode = 'signin';
+        this.showAuthModal = true;
+        // Navigate to auth demo page for a dedicated sign-in experience
+        this.$router.push('/auth-demo');
       } catch (error) {
         this.showNotification({
           type: 'error',
