@@ -1,5 +1,5 @@
 <template>
-  <div class="location-search-overlay" v-if="isVisible" @click="closeModal">
+  <div class="location-search-overlay" v-if="isVisible" @click="closeModal" ref="overlay">
     <div class="location-search-modal" ref="modal" @click.stop tabindex="-1">
       <div class="modal-header">
         <h2 class="modal-title">
