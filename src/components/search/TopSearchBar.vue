@@ -685,7 +685,7 @@ export default {
 .search-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 12px; /* reduced height */
   position: relative;
 }
 
@@ -694,8 +694,8 @@ export default {
   align-items: center;
   background: white;
   border: 2px solid rgba(236, 72, 153, 0.1);
-  border-radius: 24px;
-  padding: 16px 20px;
+  border-radius: 20px;
+  padding: 10px 14px; /* reduced padding for smaller height */
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   backdrop-filter: blur(10px);
@@ -734,7 +734,7 @@ export default {
   flex: 1;
   border: none;
   outline: none;
-  font-size: 18px;
+  font-size: 16px; /* slightly smaller */
   color: #374151;
   background: transparent;
   font-weight: 500;
@@ -757,17 +757,17 @@ export default {
 .voice-btn {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   border: none;
-  border-radius: 16px;
-  padding: 12px;
+  border-radius: 12px;
+  padding: 8px; /* reduced */
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 48px;
-  height: 48px;
+  width: 40px; /* reduced */
+  height: 40px; /* reduced */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 15px;
   position: relative;
   overflow: hidden;
 }
@@ -1193,8 +1193,8 @@ export default {
   }
   
   .search-wrapper {
-    padding: 12px 16px;
-    border-radius: 20px;
+    padding: 10px 14px;
+    border-radius: 18px;
   }
   
   .search-input {
