@@ -187,7 +187,7 @@ export default {
           id: 2,
           name: 'Los Angeles',
           description: '400+ beauty destinations',
-          icon: 'fas fa-palm-tree',
+          icon: 'fas fa-city',
           coordinates: { lat: 34.0522, lng: -118.2437 }
         },
         {
