@@ -467,7 +467,17 @@ export default {
         // disable background scrolling and ensure focus
         document.body.classList.add('modal-open');
         this.$nextTick(() => {
-          if (this.$refs.searchInput) this.$refs.searchInput.focus();
+          // reset modal internal scroll to top so header and primary CTA are visible
+          if (this.$refs.modal && typeof this.$refs.modal.scrollTop !== 'undefined') {
+            this.$refs.modal.scrollTop = 0;
+          }
+
+          // focus search input after a short delay so browsers don't auto-scroll to it before we reset
+          if (this.$refs.searchInput) {
+            setTimeout(() => {
+              this.$refs.searchInput.focus();
+            }, 60);
+          }
         });
       } else {
         document.body.classList.remove('modal-open');
