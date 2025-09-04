@@ -472,6 +472,23 @@ export default {
             this.$refs.modal.scrollTop = 0;
           }
 
+          // If the modal content is taller than viewport, align overlay to top so header is visible
+          try {
+            const modalEl = this.$refs.modal;
+            const overlayEl = this.$refs.overlay;
+            if (modalEl && overlayEl) {
+              const modalHeight = modalEl.scrollHeight;
+              const viewportH = window.innerHeight;
+              if (modalHeight > viewportH * 0.9) {
+                overlayEl.classList.add('align-top');
+              } else {
+                overlayEl.classList.remove('align-top');
+              }
+            }
+          } catch (e) {
+            // ignore
+          }
+
           // focus search input after a short delay so browsers don't auto-scroll to it before we reset
           if (this.$refs.searchInput) {
             setTimeout(() => {
@@ -481,6 +498,8 @@ export default {
         });
       } else {
         document.body.classList.remove('modal-open');
+        // remove any overlay alignment
+        if (this.$refs && this.$refs.overlay) this.$refs.overlay.classList.remove('align-top');
       }
     }
   },
