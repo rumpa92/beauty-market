@@ -1,6 +1,6 @@
 <template>
-  <div class="location-search-overlay" v-if="isVisible" @click="closeModal">
-    <div class="location-search-modal" @click.stop>
+  <div class="location-search-overlay" v-if="isVisible" @click="closeModal" ref="overlay">
+    <div class="location-search-modal" ref="modal" @click.stop tabindex="-1">
       <div class="modal-header">
         <h2 class="modal-title">
           <i class="fas fa-map-marker-alt"></i>
@@ -187,7 +187,7 @@ export default {
           id: 2,
           name: 'Los Angeles',
           description: '400+ beauty destinations',
-          icon: 'fas fa-palm-tree',
+          icon: 'fas fa-city',
           coordinates: { lat: 34.0522, lng: -118.2437 }
         },
         {
@@ -456,6 +456,56 @@ export default {
         this.showSuggestions = false;
       }
     });
+
+    // Ensure body scroll is disabled when modal is opened (helps center visually)
+    if (this.isVisible) document.body.classList.add('modal-open');
+  },
+
+  watch: {
+    isVisible(newVal) {
+      if (newVal) {
+        // disable background scrolling and ensure focus
+        document.body.classList.add('modal-open');
+        this.$nextTick(() => {
+          // reset modal internal scroll to top so header and primary CTA are visible
+          if (this.$refs.modal && typeof this.$refs.modal.scrollTop !== 'undefined') {
+            this.$refs.modal.scrollTop = 0;
+          }
+
+          // If the modal content is taller than viewport, align overlay to top so header is visible
+          try {
+            const modalEl = this.$refs.modal;
+            const overlayEl = this.$refs.overlay;
+            if (modalEl && overlayEl) {
+              const modalHeight = modalEl.scrollHeight;
+              const viewportH = window.innerHeight;
+              if (modalHeight > viewportH * 0.9) {
+                overlayEl.classList.add('align-top');
+              } else {
+                overlayEl.classList.remove('align-top');
+              }
+            }
+          } catch (e) {
+            // ignore
+          }
+
+          // focus search input after a short delay so browsers don't auto-scroll to it before we reset
+          if (this.$refs.searchInput) {
+            setTimeout(() => {
+              this.$refs.searchInput.focus();
+            }, 60);
+          }
+        });
+      } else {
+        document.body.classList.remove('modal-open');
+        // remove any overlay alignment
+        if (this.$refs && this.$refs.overlay) this.$refs.overlay.classList.remove('align-top');
+      }
+    }
+  },
+
+  beforeDestroy() {
+    document.body.classList.remove('modal-open');
   }
 };
 </script>
@@ -471,9 +521,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 2000; /* ensure overlay sits above header and other UI */
   padding: 20px;
   backdrop-filter: blur(4px);
+  box-sizing: border-box;
 }
 
 .location-search-modal {
@@ -486,6 +537,27 @@ export default {
   overflow-y: auto;
   position: relative;
   animation: modalSlideIn 0.3s ease-out;
+  box-sizing: border-box;
+  margin: 0 auto; /* center horizontally */
+  transform: translateY(0); /* keep transform controlled by flexbox */
+}
+
+/* Responsive adjustments to ensure modal fits and remains centered */
+@media (max-width: 600px) {
+  .location-search-modal {
+    max-width: 520px;
+    width: calc(100% - 32px);
+    border-radius: 16px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .location-search-modal {
+    width: calc(100% - 24px);
+    max-width: none;
+    border-radius: 12px;
+  }
 }
 
 @keyframes modalSlideIn {
@@ -497,6 +569,18 @@ export default {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* Prevent background scrolling when modal is open */
+.modal-open {
+  overflow: hidden !important;
+  height: 100%;
+}
+
+/* When modal is taller than viewport, align overlay to top so primary CTA remains visible */
+.location-search-overlay.align-top {
+  align-items: flex-start;
+  padding-top: 28px;
 }
 
 .modal-header {

@@ -14,7 +14,6 @@
             <span class="banner-badge">{{ banner.badge }}</span>
             <h2 class="banner-title">{{ banner.title }}</h2>
             <p class="banner-subtitle">{{ banner.subtitle }}</p>
-            <button class="banner-cta">{{ banner.cta }}</button>
           </div>
         </div>
       </div>
@@ -1727,6 +1726,14 @@ export default {
 .offers-header {
   text-align: center;
   margin-bottom: 60px;
+}
+
+/* Force white color for section title inside limited-offers */
+.limited-offers .section-title {
+  color: #ffffff !important;
+}
+.limited-offers .section-title i {
+  color: #ffffff !important;
 }
 
 

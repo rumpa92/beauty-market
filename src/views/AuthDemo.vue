@@ -144,7 +144,7 @@ import { mapGetters, mapActions } from 'vuex';
 import AuthModal from '@/components/auth/AuthModal.vue';
 
 export default {
-  name: 'AuthDemo',
+  name: 'RemovedAuthDemo',
   components: {
     AuthModal
   },

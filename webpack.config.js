@@ -75,12 +75,24 @@ module.exports = {
       reconnect: true
     },
     onListening: function(devServer) {
-      if (!devServer) {
-        throw new Error('webpack-dev-server is not defined');
+      // Safely handle different invocation signatures of onListening.
+      try {
+        if (devServer && devServer.server && typeof devServer.server.address === 'function') {
+          const addr = devServer.server.address();
+          const port = addr && addr.port ? addr.port : (devServer.options && devServer.options.port) || process.env.PORT;
+          console.log('Dev server listening on port:', port);
+        } else if (devServer && devServer.options && devServer.options.port) {
+          console.log('Dev server listening on port:', devServer.options.port);
+        } else if (process.env.PORT) {
+          console.log('Dev server listening on port:', process.env.PORT);
+        } else {
+          // Avoid logging raw Event objects which results in '[object Event]'
+          console.log('Dev server is listening');
+        }
+      } catch (err) {
+        // Log a concise error without printing event objects to the client overlay
+        console.warn('onListening handler error:', err && err.message ? err.message : err);
       }
-
-      const port = devServer.server.address().port;
-      console.log('Dev server listening on port:', port);
     }
   }
 };
