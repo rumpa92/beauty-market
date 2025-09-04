@@ -37,6 +37,7 @@ import TestProductNavigation from '../views/TestProductNavigation.vue';
 import ProductNavigationDemo from '../views/ProductNavigationDemo.vue';
 import QuickViewTest from '../views/QuickViewTest.vue';
 import AuthTest from '../views/AuthTest.vue';
+import HoldPage from '../views/HoldPage.vue';
 
 Vue.use(VueRouter);
 
