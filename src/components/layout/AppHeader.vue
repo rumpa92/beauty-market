@@ -233,6 +233,10 @@
         <i class="fas fa-cog"></i>
         Settings
       </router-link>
+      <button @click="logoutUser" class="mobile-nav-link mobile-logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
       </div>
       <div v-else class="mobile-auth-section">
         <button @click="openSignIn" class="mobile-nav-link">
