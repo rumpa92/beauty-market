@@ -151,26 +151,14 @@
               <i class="fas fa-chevron-right item-arrow"></i>
             </router-link>
 
-            <button @click="handleSignInClick" class="dropdown-item">
+            <button @click="logoutUser" class="dropdown-item logout-item">
               <div class="item-icon">
-                <i class="fas fa-sign-in-alt"></i>
+                <i class="fas fa-sign-out-alt"></i>
               </div>
               <div class="item-content">
-                <span class="item-title">Sign In</span>
-                <span class="item-description">Access your account</span>
+                <span class="item-title">Logout</span>
+                <span class="item-description">Sign out of your account</span>
               </div>
-              <i class="fas fa-chevron-right item-arrow"></i>
-            </button>
-
-            <button @click="handleSignUpClick" class="dropdown-item">
-              <div class="item-icon">
-                <i class="fas fa-user-plus"></i>
-              </div>
-              <div class="item-content">
-                <span class="item-title">Sign Up</span>
-                <span class="item-description">Create new account</span>
-              </div>
-              <i class="fas fa-chevron-right item-arrow"></i>
             </button>
 
             <router-link to="/profile?tab=settings" class="dropdown-item" @click="closeUserMenu">
