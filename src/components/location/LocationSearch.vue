@@ -520,6 +520,12 @@ export default {
   }
 }
 
+/* Prevent background scrolling when modal is open */
+.modal-open {
+  overflow: hidden !important;
+  height: 100%;
+}
+
 .modal-header {
   padding: 32px 32px 24px;
   text-align: center;
