@@ -180,7 +180,9 @@ const routes = [
   },
   {
     path: '/auth-demo',
-    redirect: '/'
+    name: 'AuthDemoHold',
+    component: HoldPage,
+    meta: { title: 'Auth - Coming Soon' }
   },
   {
     path: '/auth-test',
