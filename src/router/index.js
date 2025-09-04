@@ -36,7 +36,6 @@ import ProductDetailTest from '../views/ProductDetailTest.vue';
 import TestProductNavigation from '../views/TestProductNavigation.vue';
 import ProductNavigationDemo from '../views/ProductNavigationDemo.vue';
 import QuickViewTest from '../views/QuickViewTest.vue';
-import AuthDemo from '../views/AuthDemo.vue';
 import AuthTest from '../views/AuthTest.vue';
 
 Vue.use(VueRouter);
@@ -180,9 +179,7 @@ const routes = [
   },
   {
     path: '/auth-demo',
-    name: 'AuthDemo',
-    component: AuthDemo,
-    meta: { title: 'Authentication Demo - Beauty Market' }
+    redirect: '/'
   },
   {
     path: '/auth-test',
