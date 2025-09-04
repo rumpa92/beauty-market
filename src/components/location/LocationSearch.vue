@@ -577,6 +577,12 @@ export default {
   height: 100%;
 }
 
+/* When modal is taller than viewport, align overlay to top so primary CTA remains visible */
+.location-search-overlay.align-top {
+  align-items: flex-start;
+  padding-top: 28px;
+}
+
 .modal-header {
   padding: 32px 32px 24px;
   text-align: center;
