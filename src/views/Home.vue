@@ -14,7 +14,6 @@
             <span class="banner-badge">{{ banner.badge }}</span>
             <h2 class="banner-title">{{ banner.title }}</h2>
             <p class="banner-subtitle">{{ banner.subtitle }}</p>
-            <button class="banner-cta">{{ banner.cta }}</button>
           </div>
         </div>
       </div>
