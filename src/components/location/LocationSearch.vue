@@ -492,9 +492,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 2000; /* ensure overlay sits above header and other UI */
   padding: 20px;
   backdrop-filter: blur(4px);
+  box-sizing: border-box;
 }
 
 .location-search-modal {
@@ -507,6 +508,27 @@ export default {
   overflow-y: auto;
   position: relative;
   animation: modalSlideIn 0.3s ease-out;
+  box-sizing: border-box;
+  margin: 0 auto; /* center horizontally */
+  transform: translateY(0); /* keep transform controlled by flexbox */
+}
+
+/* Responsive adjustments to ensure modal fits and remains centered */
+@media (max-width: 600px) {
+  .location-search-modal {
+    max-width: 520px;
+    width: calc(100% - 32px);
+    border-radius: 16px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .location-search-modal {
+    width: calc(100% - 24px);
+    max-width: none;
+    border-radius: 12px;
+  }
 }
 
 @keyframes modalSlideIn {
