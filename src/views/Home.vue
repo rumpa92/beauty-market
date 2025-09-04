@@ -1728,6 +1728,14 @@ export default {
   margin-bottom: 60px;
 }
 
+/* Force white color for section title inside limited-offers */
+.limited-offers .section-title {
+  color: #ffffff !important;
+}
+.limited-offers .section-title i {
+  color: #ffffff !important;
+}
+
 
 .sale-products-grid {
   display: grid;
