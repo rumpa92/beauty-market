@@ -161,6 +161,14 @@ export default {
         return `Found ${this.products.length} products matching your selection`;
       }
       return 'Discover our curated collection of premium beauty products';
+    },
+    paginatedProducts() {
+      const start = (this.currentPage - 1) * this.productsPerPage;
+      const end = start + this.productsPerPage;
+      return this.products.slice(start, end);
+    },
+    totalPages() {
+      return Math.max(1, Math.ceil(this.products.length / this.productsPerPage));
     }
   },
   methods: {
