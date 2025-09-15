@@ -98,7 +98,9 @@ export default {
     return {
       viewMode: 'grid',
       activeFiltersCount: 0,
-      isMobile: false
+      isMobile: false,
+      currentPage: 1,
+      productsPerPage: 12
     };
   },
   computed: {
