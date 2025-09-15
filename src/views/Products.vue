@@ -54,6 +54,13 @@
             />
           </div>
           
+          <!-- Pagination Controls -->
+          <div v-if="totalPages > 1" class="pagination-controls">
+            <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" class="pagination-btn prev">Prev</button>
+            <div class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</div>
+            <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages" class="pagination-btn next">Next</button>
+          </div>
+
           <!-- Empty State -->
           <div v-if="products.length === 0" class="empty-state">
             <i class="fas fa-search"></i>
