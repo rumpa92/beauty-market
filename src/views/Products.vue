@@ -408,6 +408,34 @@ export default {
   font-size: 16px;
 }
 
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.pagination-btn {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--gray-700);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 500;
+}
+
 /* Mobile Responsive */
 @media (max-width: 1024px) {
   .products-content {
