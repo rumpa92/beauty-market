@@ -189,6 +189,12 @@ export default {
       // Handle quick filters
       this.$store.dispatch('products/applyQuickFilters', quickFilters);
     },
+    goToPage(page) {
+      if (page < 1) page = 1;
+      if (page > this.totalPages) page = this.totalPages;
+      this.currentPage = page;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
     countActiveFilters(filters) {
       let count = 0;
       if (filters.brands && filters.brands.length) count += filters.brands.length;
