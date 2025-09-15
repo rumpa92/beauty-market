@@ -211,6 +211,13 @@ export default {
       this.isMobile = window.innerWidth <= 768;
     }
   },
+  watch: {
+    products() {
+      if (this.currentPage > this.totalPages) {
+        this.currentPage = 1;
+      }
+    }
+  },
   mounted() {
     this.checkMobile();
     window.addEventListener('resize', this.checkMobile);
