@@ -47,7 +47,7 @@
           <!-- Products Grid -->
           <div :class="['products-grid', viewMode]">
             <ProductCard 
-              v-for="product in products" 
+              v-for="product in paginatedProducts" 
               :key="product.id"
               :product="product"
               :view-mode="viewMode"
