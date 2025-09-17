@@ -66,7 +66,7 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     client: {
-      logging: 'warn',
+      logging: 'error',
       overlay: {
         errors: true,
         warnings: false,
