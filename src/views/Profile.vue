@@ -2299,8 +2299,6 @@ export default {
   color: var(--gray-800);
   font-weight: 600;
 }
-  margin-bottom: 4px;
-}
 
 .summary-value {
   font-size: 16px;
