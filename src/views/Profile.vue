@@ -156,7 +156,7 @@
               <i class="fas fa-chevron-right support-arrow"></i>
             </div>
 
-            <div class="support-card" @click="activeSection = 'customer-support'">
+            <div class="support-card" @click="activeSection = 'ticketing'">
               <div class="support-icon">
                 <i class="fas fa-ticket-alt"></i>
               </div>
