@@ -762,7 +762,7 @@
               <h3>Still need help?</h3>
               <p>Can't find what you're looking for? Our beauty experts are here to help!</p>
             </div>
-            <button @click="activeSection = 'ticketing'" class="btn btn-primary">
+            <button @click="activeSection = 'customer-support'" class="btn btn-primary">
               Contact Support
             </button>
           </div>
