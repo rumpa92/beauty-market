@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
     clean: true
   },
   module: {
@@ -65,11 +66,11 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     client: {
-      logging: 'warn',
+      logging: 'none',
       overlay: {
         errors: true,
         warnings: false,
-        runtimeErrors: true
+        runtimeErrors: false
       },
       progress: false,
       reconnect: true

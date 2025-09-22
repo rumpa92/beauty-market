@@ -5,10 +5,9 @@
       :subtitle="wishlistItems.length ? `${wishlistItems.length} items saved` : 'Your wishlist is empty'"
     />
     <div class="container">
-      <h1>My Wishlist</h1>
       <div v-if="wishlistItems.length === 0" class="empty-wishlist">
         <p>Your wishlist is empty</p>
-        <router-link to="/products" class="btn btn-primary">Browse Products</router-link>
+        <router-link to="/products" class="btn btn-gradient">Browse Products</router-link>
       </div>
       <div v-else class="wishlist-grid">
         <ProductCard 
@@ -52,5 +51,23 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
+}
+
+/* Gradient CTA button for empty state */
+.btn-gradient {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(135deg, rgb(236, 72, 153), rgb(219, 39, 119));
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  min-height: 44px;
+  text-decoration: none;
+  transition-duration: 0.2s;
+  padding: 12px 24px;
+}
+.btn-gradient:hover {
+  opacity: 0.95;
 }
 </style>

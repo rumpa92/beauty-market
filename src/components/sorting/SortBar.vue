@@ -221,7 +221,7 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--gray-200);
   margin-bottom: 24px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .sort-container {

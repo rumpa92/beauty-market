@@ -150,7 +150,7 @@
                 <p>Find quick answers to common questions about beauty products, orders, and more</p>
                 <div class="support-stats">
                   <span>📚 50+ Articles</span>
-                  <span>⚡ Instant Search</span>
+                  <span>�� Instant Search</span>
                 </div>
               </div>
               <i class="fas fa-chevron-right support-arrow"></i>
@@ -762,7 +762,7 @@
               <h3>Still need help?</h3>
               <p>Can't find what you're looking for? Our beauty experts are here to help!</p>
             </div>
-            <button @click="activeSection = 'ticketing'" class="btn btn-primary">
+            <button @click="activeSection = 'customer-support'" class="btn btn-primary">
               Contact Support
             </button>
           </div>
@@ -770,18 +770,13 @@
 
         <!-- Ticketing Section -->
         <div v-if="activeSection === 'ticketing'" class="content-section">
-          <div class="section-header">
-            <button @click="activeSection = 'customer-support'" class="back-btn">
+          <div class="support-compact-bar">
+            <button @click="activeSection = 'customer-support'" class="back-btn compact">
               <i class="fas fa-arrow-left"></i>
-              Back to Support
+              Back
             </button>
-            <h2 class="section-title">
-              <i class="fas fa-ticket-alt"></i>
-              Support Tickets
-            </h2>
-            <p class="section-description">
-              Create and track your support requests
-            </p>
+
+            <div class="support-compact-actions"></div>
           </div>
 
           <div class="ticket-tabs">
@@ -1371,6 +1366,9 @@ export default {
       selectedFAQCategory: null,
       selectedQuestion: null,
       activeTicketTab: 'create',
+      // Support contact details
+      supportEmail: 'support@beautymarket.example',
+      supportPhone: '+18001234567',
       currentTicketStep: 1,
       submittingTicket: false,
       newTicket: {
@@ -1744,6 +1742,35 @@ export default {
       this.showNotification({
         type: 'info',
         message: 'AI Chat is available in the bottom-right corner!'
+      });
+    },
+
+    openLiveChat() {
+      // Try to open any integrated chat widget, fallback to ticket creation
+      if (window && typeof window.openChatWidget === 'function') {
+        try {
+          window.openChatWidget();
+          return;
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      if (window && window.$chat && typeof window.$chat.open === 'function') {
+        try {
+          window.$chat.open();
+          return;
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      // Fallback: open ticket creation panel
+      this.activeSection = 'customer-support';
+      this.activeTicketTab = 'create';
+      this.showNotification({
+        type: 'info',
+        message: 'Live chat is not available — you can submit a ticket instead.'
       });
     },
 
@@ -2227,7 +2254,46 @@ export default {
   color: var(--gray-500);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 4px;
+}
+
+/* Compact support bar */
+.support-compact-bar {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: 12px;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding: 8px;
+}
+
+.support-compact-bar .back-btn.compact {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  color: var(--primary-500);
+  padding: 10px 16px;
+  font-weight: 600;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.support-compact-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-outline.small {
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: white;
+  color: var(--gray-800);
+  font-weight: 600;
 }
 
 .summary-value {

@@ -47,13 +47,20 @@
           <!-- Products Grid -->
           <div :class="['products-grid', viewMode]">
             <ProductCard 
-              v-for="product in products" 
+              v-for="product in paginatedProducts" 
               :key="product.id"
               :product="product"
               :view-mode="viewMode"
             />
           </div>
           
+          <!-- Pagination Controls -->
+          <div v-if="totalPages > 1" class="pagination-controls">
+            <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" class="pagination-btn prev">Prev</button>
+            <div class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</div>
+            <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages" class="pagination-btn next">Next</button>
+          </div>
+
           <!-- Empty State -->
           <div v-if="products.length === 0" class="empty-state">
             <i class="fas fa-search"></i>
@@ -91,7 +98,9 @@ export default {
     return {
       viewMode: 'grid',
       activeFiltersCount: 0,
-      isMobile: false
+      isMobile: false,
+      currentPage: 1,
+      productsPerPage: 12
     };
   },
   computed: {
@@ -152,6 +161,14 @@ export default {
         return `Found ${this.products.length} products matching your selection`;
       }
       return 'Discover our curated collection of premium beauty products';
+    },
+    paginatedProducts() {
+      const start = (this.currentPage - 1) * this.productsPerPage;
+      const end = start + this.productsPerPage;
+      return this.products.slice(start, end);
+    },
+    totalPages() {
+      return Math.max(1, Math.ceil(this.products.length / this.productsPerPage));
     }
   },
   methods: {
@@ -172,6 +189,12 @@ export default {
       // Handle quick filters
       this.$store.dispatch('products/applyQuickFilters', quickFilters);
     },
+    goToPage(page) {
+      if (page < 1) page = 1;
+      if (page > this.totalPages) page = this.totalPages;
+      this.currentPage = page;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
     countActiveFilters(filters) {
       let count = 0;
       if (filters.brands && filters.brands.length) count += filters.brands.length;
@@ -186,6 +209,13 @@ export default {
     },
     checkMobile() {
       this.isMobile = window.innerWidth <= 768;
+    }
+  },
+  watch: {
+    products() {
+      if (this.currentPage > this.totalPages) {
+        this.currentPage = 1;
+      }
     }
   },
   mounted() {
@@ -376,6 +406,34 @@ export default {
 .empty-state p {
   margin-bottom: 24px;
   font-size: 16px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.pagination-btn {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--gray-700);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Mobile Responsive */

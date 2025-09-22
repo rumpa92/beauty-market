@@ -406,14 +406,14 @@ export default {
         minRating: 0
       },
       openSections: {
-        brand: false,
-        price: false,
-        concern: false,
-        skinType: false,
-        hairType: false,
-        ingredients: false,
-        offers: false,
-        rating: false
+        brand: true,
+        price: true,
+        concern: true,
+        skinType: true,
+        hairType: true,
+        ingredients: true,
+        offers: true,
+        rating: true
       },
       priceRange: {
         min: 0,
