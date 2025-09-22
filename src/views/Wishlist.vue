@@ -5,10 +5,9 @@
       :subtitle="wishlistItems.length ? `${wishlistItems.length} items saved` : 'Your wishlist is empty'"
     />
     <div class="container">
-      <h1>My Wishlist</h1>
       <div v-if="wishlistItems.length === 0" class="empty-wishlist">
         <p>Your wishlist is empty</p>
-        <router-link to="/products" class="btn btn-primary">Browse Products</router-link>
+        <router-link to="/products" class="btn btn-gradient">Browse Products</router-link>
       </div>
       <div v-else class="wishlist-grid">
         <ProductCard 
