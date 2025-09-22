@@ -2260,7 +2260,7 @@ export default {
 .support-compact-bar {
   display: flex;
   align-items: center;
-  background: #f3f4f6;
+  background: transparent;
   border-radius: 12px;
   gap: 8px;
   margin-bottom: 32px;
@@ -2270,9 +2270,9 @@ export default {
 .support-compact-bar .back-btn.compact {
   display: inline-flex;
   align-items: center;
-  background: white;
+  background: transparent;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: none;
   color: var(--primary-500);
   padding: 10px 16px;
   font-weight: 600;
