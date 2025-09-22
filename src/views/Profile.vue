@@ -776,11 +776,7 @@
               Back
             </button>
 
-            <div class="support-compact-actions">
-              <button @click="openLiveChat" class="btn btn-outline small">Start Live Chat</button>
-              <a :href="`mailto:${supportEmail}`" class="btn btn-outline small">Email Support</a>
-              <a :href="`tel:${supportPhone}`" class="btn btn-outline small">Call Support</a>
-            </div>
+            <div class="support-compact-actions"></div>
           </div>
 
           <div class="ticket-tabs">
