@@ -66,11 +66,11 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     client: {
-      logging: 'error',
+      logging: 'none',
       overlay: {
         errors: true,
         warnings: false,
-        runtimeErrors: true
+        runtimeErrors: false
       },
       progress: false,
       reconnect: true
