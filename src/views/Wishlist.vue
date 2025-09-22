@@ -52,4 +52,22 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
+
+/* Gradient CTA button for empty state */
+.btn-gradient {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(135deg, rgb(236, 72, 153), rgb(219, 39, 119));
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  min-height: 44px;
+  text-decoration: none;
+  transition-duration: 0.2s;
+  padding: 12px 24px;
+}
+.btn-gradient:hover {
+  opacity: 0.95;
+}
 </style>
