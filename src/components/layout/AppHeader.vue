@@ -1371,4 +1371,24 @@ export default {
     display: none;
   }
 }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.location-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.actions-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
 </style>
