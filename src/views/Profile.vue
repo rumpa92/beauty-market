@@ -770,34 +770,16 @@
 
         <!-- Ticketing Section -->
         <div v-if="activeSection === 'ticketing'" class="content-section">
-          <div class="section-header support-header">
-            <button @click="activeSection = 'customer-support'" class="back-btn">
+          <div class="support-compact-bar">
+            <button @click="activeSection = 'customer-support'" class="back-btn compact">
               <i class="fas fa-arrow-left"></i>
-              Back to Support
+              Back
             </button>
 
-            <div class="support-intro">
-              <h2 class="support-title">Need Help? We’re Here for You</h2>
-              <p class="support-lead">Choose the support channel that works best for you:</p>
-              <ul class="support-channels">
-                <li class="channel-item">
-                  <strong>💬 Live Chat – Available 24/7</strong>
-                  <div class="channel-desc">Get instant answers from our team anytime, day or night.</div>
-                  <button @click="openLiveChat" class="btn btn-outline small">Start Live Chat</button>
-                </li>
-                <li class="channel-item">
-                  <strong>📧 Email Support – Response within 1–2 business days</strong>
-                  <div class="channel-desc">Send us a detailed message and we’ll follow up as soon as possible.</div>
-                  <a :href="`mailto:${supportEmail}`" class="btn btn-outline small">Email Support</a>
-                </li>
-                <li class="channel-item">
-                  <strong>📞 Phone Support – Mon–Fri, 9 AM–5 PM</strong>
-                  <div class="channel-desc">Speak directly with a representative during business hours.</div>
-                  <a :href="`tel:${supportPhone}`" class="btn btn-outline small">Call Support</a>
-                </li>
-              </ul>
-
-              <p class="support-short">Select Live Chat, Email, or Phone Support below to connect with our team in the way that’s most convenient for you.</p>
+            <div class="support-compact-actions">
+              <button @click="openLiveChat" class="btn btn-outline small">Start Live Chat</button>
+              <a :href="`mailto:${supportEmail}`" class="btn btn-outline small">Email Support</a>
+              <a :href="`tel:${supportPhone}`" class="btn btn-outline small">Call Support</a>
             </div>
           </div>
 
