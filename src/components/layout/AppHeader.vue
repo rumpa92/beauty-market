@@ -61,124 +61,127 @@
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <!-- Location Display/Search Button -->
-        <button class="action-btn location-btn" @click="openLocationSearch" :title="currentLocation ? 'Change location' : 'Find beauty near you'">
-          <i class="fas fa-map-marker-alt"></i>
-          <span class="location-text">
-            {{ currentLocation ? getShortLocation(currentLocation.address) : 'Location' }}
-          </span>
-        </button>
-
-
-        <button class="action-btn cart-btn" @click="toggleCart">
-          <i class="fas fa-shopping-bag"></i>
-          <span class="badge" v-if="cartItemCount">{{ cartItemCount }}</span>
-          <span class="sr-only">Shopping Cart</span>
-        </button>
-
-        <!-- Authentication Actions -->
-        <div v-if="!isAuthenticated" class="auth-actions">
-          <button @click="openSignIn" class="auth-btn signin-btn">
-            <i class="fas fa-sign-in-alt"></i>
-            <span class="auth-text">Sign In</span>
-          </button>
-          <button @click="openSignUp" class="auth-btn signup-btn">
-            <i class="fas fa-user-plus"></i>
-            <span class="auth-text">Sign Up</span>
+        <div class="location-group">
+          <!-- Location Display/Search Button -->
+          <button class="action-btn location-btn" @click="openLocationSearch" :title="currentLocation ? 'Change location' : 'Find beauty near you'">
+            <i class="fas fa-map-marker-alt"></i>
+            <span class="location-text">
+              {{ currentLocation ? getShortLocation(currentLocation.address) : 'Location' }}
+            </span>
           </button>
         </div>
 
-        <!-- User Profile (when authenticated) -->
-        <div v-else class="user-profile-dropdown">
-          <button @click="toggleUserMenu" class="user-profile-btn" :class="{ active: isUserMenuOpen }">
-            <div class="user-avatar">
-              <img v-if="userProfile.avatar" :src="userProfile.avatar" alt="Profile">
-              <i v-else class="fas fa-user"></i>
-              <div class="online-indicator"></div>
-            </div>
-            <div class="user-info">
-              <span class="user-name">{{ userProfile.name || 'User' }}</span>
-              <span class="user-status">Online</span>
-            </div>
-            <i class="fas fa-chevron-down dropdown-arrow" :class="{ rotated: isUserMenuOpen }"></i>
+        <div class="actions-group">
+          <button class="action-btn cart-btn" @click="toggleCart">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="badge" v-if="cartItemCount">{{ cartItemCount }}</span>
+            <span class="sr-only">Shopping Cart</span>
           </button>
 
-          <div class="user-dropdown-menu" :class="{ active: isUserMenuOpen }">
-            <div class="dropdown-header">
-              <div class="user-avatar-large">
+          <!-- Authentication Actions -->
+          <div v-if="!isAuthenticated" class="auth-actions">
+            <button @click="openSignIn" class="auth-btn signin-btn">
+              <i class="fas fa-sign-in-alt"></i>
+              <span class="auth-text">Sign In</span>
+            </button>
+            <button @click="openSignUp" class="auth-btn signup-btn">
+              <i class="fas fa-user-plus"></i>
+              <span class="auth-text">Sign Up</span>
+            </button>
+          </div>
+
+          <!-- User Profile (when authenticated) -->
+          <div v-else class="user-profile-dropdown">
+            <button @click="toggleUserMenu" class="user-profile-btn" :class="{ active: isUserMenuOpen }">
+              <div class="user-avatar">
                 <img v-if="userProfile.avatar" :src="userProfile.avatar" alt="Profile">
                 <i v-else class="fas fa-user"></i>
+                <div class="online-indicator"></div>
               </div>
-              <div class="user-details">
-                <h4>{{ userProfile.name || 'User' }}</h4>
-                <p>{{ userProfile.email || 'user@example.com' }}</p>
+              <div class="user-info">
+                <span class="user-name">{{ userProfile.name || 'User' }}</span>
+                <span class="user-status">Online</span>
               </div>
-            </div>
-
-            <div class="dropdown-divider"></div>
-
-            <router-link to="/profile" class="dropdown-item" @click="closeUserMenu">
-              <div class="item-icon">
-                <i class="fas fa-user"></i>
-              </div>
-              <div class="item-content">
-                <span class="item-title">My Profile</span>
-                <span class="item-description">Manage your account</span>
-              </div>
-              <i class="fas fa-chevron-right item-arrow"></i>
-            </router-link>
-
-            <router-link to="/orders" class="dropdown-item" @click="closeUserMenu">
-              <div class="item-icon">
-                <i class="fas fa-box"></i>
-              </div>
-              <div class="item-content">
-                <span class="item-title">My Orders</span>
-                <span class="item-description">Track your purchases</span>
-              </div>
-              <i class="fas fa-chevron-right item-arrow"></i>
-            </router-link>
-
-            <router-link to="/wishlist" class="dropdown-item" @click="closeUserMenu">
-              <div class="item-icon">
-                <i class="fas fa-heart"></i>
-              </div>
-              <div class="item-content">
-                <span class="item-title">Wishlist</span>
-                <span class="item-description">Your saved items</span>
-              </div>
-              <div class="item-badge" v-if="wishlistCount > 0">{{ wishlistCount }}</div>
-              <i class="fas fa-chevron-right item-arrow"></i>
-            </router-link>
-
-            <button @click="logoutUser" class="dropdown-item logout-item">
-              <div class="item-icon">
-                <i class="fas fa-sign-out-alt"></i>
-              </div>
-              <div class="item-content">
-                <span class="item-title">Logout</span>
-                <span class="item-description">Sign out of your account</span>
-              </div>
+              <i class="fas fa-chevron-down dropdown-arrow" :class="{ rotated: isUserMenuOpen }"></i>
             </button>
 
-            <router-link to="/profile?tab=settings" class="dropdown-item" @click="closeUserMenu">
-              <div class="item-icon">
-                <i class="fas fa-cog"></i>
+            <div class="user-dropdown-menu" :class="{ active: isUserMenuOpen }">
+              <div class="dropdown-header">
+                <div class="user-avatar-large">
+                  <img v-if="userProfile.avatar" :src="userProfile.avatar" alt="Profile">
+                  <i v-else class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                  <h4>{{ userProfile.name || 'User' }}</h4>
+                  <p>{{ userProfile.email || 'user@example.com' }}</p>
+                </div>
               </div>
-              <div class="item-content">
-                <span class="item-title">Settings</span>
-                <span class="item-description">Preferences & privacy</span>
-              </div>
-              <i class="fas fa-chevron-right item-arrow"></i>
-            </router-link>
 
+              <div class="dropdown-divider"></div>
+
+              <router-link to="/profile" class="dropdown-item" @click="closeUserMenu">
+                <div class="item-icon">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="item-content">
+                  <span class="item-title">My Profile</span>
+                  <span class="item-description">Manage your account</span>
+                </div>
+                <i class="fas fa-chevron-right item-arrow"></i>
+              </router-link>
+
+              <router-link to="/orders" class="dropdown-item" @click="closeUserMenu">
+                <div class="item-icon">
+                  <i class="fas fa-box"></i>
+                </div>
+                <div class="item-content">
+                  <span class="item-title">My Orders</span>
+                  <span class="item-description">Track your purchases</span>
+                </div>
+                <i class="fas fa-chevron-right item-arrow"></i>
+              </router-link>
+
+              <router-link to="/wishlist" class="dropdown-item" @click="closeUserMenu">
+                <div class="item-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="item-content">
+                  <span class="item-title">Wishlist</span>
+                  <span class="item-description">Your saved items</span>
+                </div>
+                <div class="item-badge" v-if="wishlistCount > 0">{{ wishlistCount }}</div>
+                <i class="fas fa-chevron-right item-arrow"></i>
+              </router-link>
+
+              <button @click="logoutUser" class="dropdown-item logout-item">
+                <div class="item-icon">
+                  <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <div class="item-content">
+                  <span class="item-title">Logout</span>
+                  <span class="item-description">Sign out of your account</span>
+                </div>
+              </button>
+
+              <router-link to="/profile?tab=settings" class="dropdown-item" @click="closeUserMenu">
+                <div class="item-icon">
+                  <i class="fas fa-cog"></i>
+                </div>
+                <div class="item-content">
+                  <span class="item-title">Settings</span>
+                  <span class="item-description">Preferences & privacy</span>
+                </div>
+                <i class="fas fa-chevron-right item-arrow"></i>
+              </router-link>
+
+            </div>
           </div>
-        </div>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-btn" @click="toggleMobileMenu">
-          <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
-        </button>
+          <!-- Mobile Menu Toggle -->
+          <button class="mobile-menu-btn" @click="toggleMobileMenu">
+            <i class="fas" :class="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+          </button>
+        </div>
       </div>
     </div>
 
