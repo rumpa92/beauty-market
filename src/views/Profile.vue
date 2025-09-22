@@ -2258,6 +2258,47 @@ export default {
   color: var(--gray-500);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Compact support bar */
+.support-compact-bar {
+  display: flex;
+  align-items: center;
+  background: #f3f4f6;
+  border-radius: 12px;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding: 8px;
+}
+
+.support-compact-bar .back-btn.compact {
+  display: inline-flex;
+  align-items: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  color: var(--primary-500);
+  padding: 10px 16px;
+  font-weight: 600;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.support-compact-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-outline.small {
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: white;
+  color: var(--gray-800);
+  font-weight: 600;
+}
   margin-bottom: 4px;
 }
 
