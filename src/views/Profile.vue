@@ -150,7 +150,7 @@
                 <p>Find quick answers to common questions about beauty products, orders, and more</p>
                 <div class="support-stats">
                   <span>📚 50+ Articles</span>
-                  <span>⚡ Instant Search</span>
+                  <span>�� Instant Search</span>
                 </div>
               </div>
               <i class="fas fa-chevron-right support-arrow"></i>
@@ -1764,6 +1764,35 @@ export default {
       this.showNotification({
         type: 'info',
         message: 'AI Chat is available in the bottom-right corner!'
+      });
+    },
+
+    openLiveChat() {
+      // Try to open any integrated chat widget, fallback to ticket creation
+      if (window && typeof window.openChatWidget === 'function') {
+        try {
+          window.openChatWidget();
+          return;
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      if (window && window.$chat && typeof window.$chat.open === 'function') {
+        try {
+          window.$chat.open();
+          return;
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      // Fallback: open ticket creation panel
+      this.activeSection = 'customer-support';
+      this.activeTicketTab = 'create';
+      this.showNotification({
+        type: 'info',
+        message: 'Live chat is not available — you can submit a ticket instead.'
       });
     },
 
