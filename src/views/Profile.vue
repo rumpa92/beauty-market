@@ -1388,6 +1388,9 @@ export default {
       selectedFAQCategory: null,
       selectedQuestion: null,
       activeTicketTab: 'create',
+      // Support contact details
+      supportEmail: 'support@beautymarket.example',
+      supportPhone: '+18001234567',
       currentTicketStep: 1,
       submittingTicket: false,
       newTicket: {
